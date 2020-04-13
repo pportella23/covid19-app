@@ -11,8 +11,7 @@ export default function Chart({ chartData, legendPosition }) {
   return (
     <div className="chart">
       <Line
-        height={500}
-        width={1000}
+        height={100}
         data={data}
         options={{
           title: {
@@ -24,6 +23,7 @@ export default function Chart({ chartData, legendPosition }) {
             display: displayLegend,
             position: lPosition,
           },
+          maintainAspectRatio: true,
         }}
       />
     </div>
