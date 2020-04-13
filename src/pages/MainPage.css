@@ -1,0 +1,21 @@
+.MainPage{
+    height: 100vh;
+}
+
+.cases {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.charts {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

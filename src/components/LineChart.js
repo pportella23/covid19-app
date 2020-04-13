@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 export default function Chart({ chartData, legendPosition }) {
   const [data, setData] = useState(chartData);
@@ -10,7 +10,9 @@ export default function Chart({ chartData, legendPosition }) {
 
   return (
     <div className="chart">
-      <Bar
+      <Line
+        height={500}
+        width={1000}
         data={data}
         options={{
           title: {
