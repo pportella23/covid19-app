@@ -17,7 +17,7 @@ export default function MainPage() {
   const [doughnutData, setDoughnutData] = useState({});
 
   //UF
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     getCountryCases();
@@ -25,12 +25,11 @@ export default function MainPage() {
   }, []);
 
   useEffect(() => {
-    // console.log(value);
     getChartData(value);
   }, [value]);
 
   function handleChange(selectedOption) {
-    setValue(selectedOption.value);
+    setValue(selectedOption);
   }
 
   async function getCountryCases() {
@@ -186,7 +185,7 @@ export default function MainPage() {
 
   async function getChartData(uf) {
     setBusy(true);
-    const obj = await getData(uf);
+    const obj = await getData(uf.value);
 
     setCharData({
       labels: [
@@ -256,7 +255,7 @@ export default function MainPage() {
 
       <div className="select">
         {/* TA RENDERIZANDO O SELECT VARIAS VEZES, N SEI PQ */}
-        {console.log(value)}
+        {/* {console.log(value)} */}
         <Select
           value={value}
           onChange={(selected) => handleChange(selected)}
@@ -268,7 +267,11 @@ export default function MainPage() {
       {isBusy ? (
         <p>Loading</p>
       ) : (
-        <LineChart uf={value} chartData={chartData} legendPosition="top" />
+        <LineChart
+          uf={value ? value.value : "RS"}
+          chartData={chartData}
+          legendPosition="top"
+        />
       )}
       {loadingDoughnut ? (
         <p>Loading</p>
