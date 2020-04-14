@@ -100,7 +100,9 @@ export default function MainPage() {
       )
     ).data.data;
     const dataWeek5 = await (
-      await api.get(`/api/report/v1/brazil/${formatDate(todaysDate)}`)
+      await api.get(
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 1 * days))}`
+      )
     ).data.data;
 
     let casesWeek1 = "";
@@ -195,7 +197,6 @@ export default function MainPage() {
         date: dayWeek5,
       },
     };
-
     return obj;
   }
 
