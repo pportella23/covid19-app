@@ -16,6 +16,5 @@ body {
     font-family: Roboto, sans-serif;
     font: 400 14px Roboto, sans-serif;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased; 
-    background: #f0f0f5;
+    -webkit-font-smoothing: antialiased;
 }

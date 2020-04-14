@@ -33,11 +33,30 @@ export default function TotalStats() {
     setUpdated(up);
   }
 
+  function getLetality() {
+    return `${((countryDeath * 100)/countryCase).toFixed(2)}%`;
+  }
+
   return (
-    <div className="container">
-      <p>Total de casos: {countryCase}</p>
-      <p>Total de obitos: {countryDeath}</p>
-      <p>última atualização: {updated}</p>
-    </div>
+    <>
+      <div className="container">
+        <div className="box">
+          <p className="containerFont">Casos Confirmados</p>
+          <p><strong className="strongCase">{countryCase}</strong></p>
+        </div>
+        <div className="box">
+          <p className="containerFont">Total de Óbitos</p>
+          <p><strong className="strongDeath">{countryDeath}</strong></p>
+        </div>
+        <div className="box">
+          <p className="containerFont">Taxa de Letalidade</p>
+          <p><strong className="strongLetal">{getLetality()}</strong></p>
+        </div>
+      </div>
+      <div className="updated">
+        <p className="containerFont">última atualização</p>
+        <p><strong className="">{updated}</strong></p>
+      </div>
+    </>
   );
 }

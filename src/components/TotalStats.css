@@ -2,4 +2,42 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 5%;
 }
+
+.containerFont {
+    font-size: 1.1rem;
+}
+
+.box {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+    flex-direction: column;
+    border: 1px solid #dbe9f5;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
+    padding: 22px;
+}
+
+.strongCase {
+    color:#6370ff;;
+    font-size: 2rem;
+}
+
+.strongDeath {
+    color:#ff261b;
+    font-size: 2rem;
+}
+
+.strongLetal {
+    color:#50c878;
+    font-size: 2rem;
+}
+/* 
+.updated {
+    border: 1px solid #dbe9f5;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
+    padding: 22px;
+} */
