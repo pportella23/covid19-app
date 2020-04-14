@@ -52,7 +52,7 @@ export default function MainPage() {
 
   return (
     <div className="MainPage">
-      <h1 className="title">Covid-19</h1>
+      <header className="title">Coronavírus</header>
       <TotalStats />
       <LineChart />
       {loadingDoughnut ? (

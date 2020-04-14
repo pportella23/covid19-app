@@ -12,6 +12,10 @@ export default function TotalStats() {
     getCountryCases();
   }, []);
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   async function getCountryCases() {
     const data = await api.get("/api/report/v1/brazil");
     const cases = data.data.data.confirmed;
@@ -28,13 +32,13 @@ export default function TotalStats() {
       d.getHours() +
       "h";
 
-    setCountryCase(cases);
-    setCountryDeath(deaths);
+    setCountryCase(numberWithCommas(cases));
+    setCountryDeath(numberWithCommas(deaths));
     setUpdated(up);
   }
 
   function getLetality() {
-    return `${((countryDeath * 100)/countryCase).toFixed(2)}%`;
+    return `${((countryDeath * 100) / countryCase).toFixed(2)}%`;
   }
 
   return (
@@ -42,20 +46,28 @@ export default function TotalStats() {
       <div className="container">
         <div className="box">
           <p className="containerFont">Casos Confirmados</p>
-          <p><strong className="strongCase">{countryCase}</strong></p>
+          <p>
+            <strong className="strongCase">{countryCase}</strong>
+          </p>
         </div>
         <div className="box">
           <p className="containerFont">Total de Óbitos</p>
-          <p><strong className="strongDeath">{countryDeath}</strong></p>
+          <p>
+            <strong className="strongDeath">{countryDeath}</strong>
+          </p>
         </div>
         <div className="box">
           <p className="containerFont">Taxa de Letalidade</p>
-          <p><strong className="strongLetal">{getLetality()}</strong></p>
+          <p>
+            <strong className="strongLetal">{getLetality()}</strong>
+          </p>
         </div>
       </div>
       <div className="updated">
-        <p className="containerFont">última atualização</p>
-        <p><strong className="">{updated}</strong></p>
+        <p className="updateFont">Última atualização</p>
+        <p>
+          <strong className="">{updated}</strong>
+        </p>
       </div>
     </>
   );

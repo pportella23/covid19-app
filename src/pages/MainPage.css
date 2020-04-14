@@ -19,3 +19,13 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+header {
+    font-size: 3rem;
+    font-weight: bold;
+    border-bottom: 1px solid #dbe9f5;
+    margin-bottom: 1%;
+    color: #62625d;
+    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
+    padding: 10px;
+}
