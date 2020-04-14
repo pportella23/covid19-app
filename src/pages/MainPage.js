@@ -3,6 +3,8 @@ import LineChart from "../components/LineChart";
 import DoughnutChart from "../components/DoughnutChart";
 import "./MainPage.css";
 import api from "../services/api";
+import Select from "react-select";
+import uf from "../utils/uf";
 
 export default function MainPage() {
   const [chartData, setCharData] = useState({});
@@ -10,10 +12,26 @@ export default function MainPage() {
   const [countryCase, setCountryCase] = useState("");
   const [countryDeath, setCountryDeath] = useState("");
 
+  //Doughnut
+  const [loadingDoughnut, setLoadingDoughnut] = useState(true);
+  const [doughnutData, setDoughnutData] = useState({});
+
+  //UF
+  const [value, setValue] = useState(null);
+
   useEffect(() => {
-    getChartData();
     getCountryCases();
+    chartDoughnut();
   }, []);
+
+  useEffect(() => {
+    // console.log(value);
+    getChartData(value);
+  }, [value]);
+
+  function handleChange(selectedOption) {
+    setValue(selectedOption.value);
+  }
 
   async function getCountryCases() {
     const data = await api.get("/api/report/v1/brazil");
@@ -42,7 +60,7 @@ export default function MainPage() {
     return year + month + day;
   }
 
-  async function getData() {
+  async function getData(test) {
     let todaysDate = new Date();
     let days = 86400000;
 
@@ -82,36 +100,60 @@ export default function MainPage() {
     let dayWeek5 = "";
 
     Object.entries(dataWeek1).map((uf) => {
-      if (uf[1].uf === "RS") {
+      if (uf[1].uf === test) {
         casesWeek1 = uf[1].cases;
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek1 = uf[1].cases;
+        }
       }
     });
 
     Object.entries(dataWeek2).map((uf) => {
-      if (uf[1].uf === "RS") {
+      if (uf[1].uf === test) {
         casesWeek2 = uf[1].cases;
         dayWeek2 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek2 = uf[1].cases;
+          dayWeek2 = new Date(uf[1].datetime);
+        }
       }
     });
 
     Object.entries(dataWeek3).map((uf) => {
-      if (uf[1].uf === "RS") {
+      if (uf[1].uf === test) {
         casesWeek3 = uf[1].cases;
         dayWeek3 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek3 = uf[1].cases;
+          dayWeek3 = new Date(uf[1].datetime);
+        }
       }
     });
 
     Object.entries(dataWeek4).map((uf) => {
-      if (uf[1].uf === "RS") {
+      if (uf[1].uf === test) {
         casesWeek4 = uf[1].cases;
         dayWeek4 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek4 = uf[1].cases;
+          dayWeek4 = new Date(uf[1].datetime);
+        }
       }
     });
 
     Object.entries(dataWeek5).map((uf) => {
-      if (uf[1].uf === "RS") {
+      if (uf[1].uf === test) {
         casesWeek5 = uf[1].cases;
         dayWeek5 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek5 = uf[1].cases;
+          dayWeek5 = new Date(uf[1].datetime);
+        }
       }
     });
 
@@ -142,9 +184,9 @@ export default function MainPage() {
     return obj;
   }
 
-  async function getChartData() {
-    const obj = await getData();
-    console.log(obj);
+  async function getChartData(uf) {
+    setBusy(true);
+    const obj = await getData(uf);
 
     setCharData({
       labels: [
@@ -155,7 +197,7 @@ export default function MainPage() {
       ],
       datasets: [
         {
-          label: "Número do aumento de casos",
+          label: "Número do aumento de casos por semana",
           data: [
             obj.week1.cases,
             obj.week2.cases,
@@ -171,8 +213,37 @@ export default function MainPage() {
         },
       ],
     });
-
     setBusy(false);
+  }
+
+  async function getDoughnutData() {
+    const data = await api.get(
+      "https://covid19-brazil-api.now.sh/api/report/v1/brazil"
+    );
+
+    const obj = {
+      cases: data.data.data.confirmed,
+      deaths: data.data.data.deaths,
+      recovers: data.data.data.recovered,
+      total: data.data.data.confirmed,
+    };
+    return obj;
+  }
+
+  async function chartDoughnut() {
+    const obj = await getDoughnutData();
+
+    setDoughnutData({
+      labels: [`Recuperados`, `Confirmados`, `Mortes`],
+      datasets: [
+        {
+          label: "Casos",
+          data: [obj.recovers, obj.cases, obj.deaths],
+          backgroundColor: ["#37ab37", "#4952ff", "#ec5353"],
+        },
+      ],
+    });
+    setLoadingDoughnut(false);
   }
 
   return (
@@ -182,13 +253,27 @@ export default function MainPage() {
         <p>Total de casos: {countryCase}</p>
         <p>Total de obitos: {countryDeath}</p>
       </div>
+
+      <div className="select">
+        {/* TA RENDERIZANDO O SELECT VARIAS VEZES, N SEI PQ */}
+        {console.log(value)}
+        <Select
+          value={value}
+          onChange={(selected) => handleChange(selected)}
+          options={uf}
+          // className="select1"
+        />
+      </div>
+
       {isBusy ? (
         <p>Loading</p>
       ) : (
-        <div>
-          <LineChart chartData={chartData} legendPosition="top" />
-          <DoughnutChart chartData={chartData} legendPosition="top" />
-        </div>
+        <LineChart uf={value} chartData={chartData} legendPosition="top" />
+      )}
+      {loadingDoughnut ? (
+        <p>Loading</p>
+      ) : (
+        <DoughnutChart chartData={doughnutData} legendPosition="top" />
       )}
     </div>
   );

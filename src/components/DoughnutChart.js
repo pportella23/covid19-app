@@ -16,7 +16,7 @@ export default function Chart({ chartData, legendPosition }) {
         options={{
           title: {
             display: displayTitle,
-            text: "População das cidades do RS",
+            text: "Total de casos no Brasil",
             fontSize: 25,
           },
           legend: {

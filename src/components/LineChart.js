@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 
-export default function Chart({ chartData, legendPosition }) {
+export default function Chart({ chartData, legendPosition, value }) {
   const [data, setData] = useState(chartData);
   const [lPosition, setLPosition] = useState(legendPosition);
 
@@ -16,7 +16,7 @@ export default function Chart({ chartData, legendPosition }) {
         options={{
           title: {
             display: displayTitle,
-            text: "População das cidades do RS",
+            text: `Corona no estado ${value}`,
             fontSize: 25,
           },
           legend: {
