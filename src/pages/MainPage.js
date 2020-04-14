@@ -19,6 +19,9 @@ export default function MainPage() {
   //UF
   const [value, setValue] = useState("");
 
+  //updatedAt
+  const [updated, setUpdated] = useState("");
+
   useEffect(() => {
     getCountryCases();
     chartDoughnut();
@@ -36,8 +39,21 @@ export default function MainPage() {
     const data = await api.get("/api/report/v1/brazil");
     const cases = data.data.data.confirmed;
     const deaths = data.data.data.deaths;
+    const updatedAt = data.data.data.updated_at;
+    let d = new Date(updatedAt);
+    let up =
+      d.getDate() +
+      "/" +
+      (d.getMonth() + 1) +
+      "/" +
+      d.getFullYear() +
+      " - " +
+      d.getHours() +
+      "h";
+
     setCountryCase(cases);
     setCountryDeath(deaths);
+    setUpdated(up);
   }
 
   function formatDate(todaysDate) {
@@ -204,7 +220,7 @@ export default function MainPage() {
             obj.week4.cases,
           ],
           backgroundColor: [
-            "rgba(255, 99, 132, 0.6)",
+            // "rgba(255, 99, 132, 0.6)",
             "rgba(54, 162, 235, 0.6)",
             "rgba(255, 206, 86, 0.6)",
             "rgba(75, 192, 192, 0.6)",
@@ -252,10 +268,8 @@ export default function MainPage() {
         <p>Total de casos: {countryCase}</p>
         <p>Total de obitos: {countryDeath}</p>
       </div>
-
+      <p>última atualização: {updated}</p>
       <div className="select">
-        {/* TA RENDERIZANDO O SELECT VARIAS VEZES, N SEI PQ */}
-        {/* {console.log(value)} */}
         <Select
           value={value}
           onChange={(selected) => handleChange(selected)}
