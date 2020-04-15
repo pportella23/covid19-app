@@ -82,6 +82,16 @@
 
 }
 
+@media only screen and (max-width: 500px){
+    .updated{
+        font-size: 0.8rem;
+    }
+    .updateFont {
+        font-size: 0.9rem !important;
+    }
+
+}
+
 .updateFont {
     font-size: 1.3rem;
     color: #62625d;
