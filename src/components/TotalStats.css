@@ -3,6 +3,8 @@
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 1%;
+    margin-left: 5.5%;
+    margin-right: 5.5%;
 }
 @media only screen and (max-width: 1050px){
     .cont {
@@ -11,6 +13,8 @@
         align-items: center;
         margin-bottom: 1%;
         flex-direction: column;
+        margin-left: 1%;
+        margin-right: 1%;
     }
 
     .box {
@@ -22,8 +26,8 @@
         border-radius: 16px;
         box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
         padding: 22px;
-        margin-left: 5%;
-        margin-right: 5%;
+        /* margin-left: 5%;
+        margin-right: 5%; */
         margin-bottom: 2%;
     }
 }

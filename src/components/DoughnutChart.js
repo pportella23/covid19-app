@@ -12,14 +12,14 @@ export default function Chart({ chartData, legendPosition }) {
   return (
     <div className="Dchart">
       <Doughnut
-        height={500}
-        width={500}
+        height={100}
+        width={300}
         data={data}
         options={{
           title: {
             display: displayTitle,
             text: "Total de casos no Brasil",
-            fontSize: 25,
+            fontSize: 20,
           },
           legend: {
             display: displayLegend,

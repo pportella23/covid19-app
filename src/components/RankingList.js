@@ -21,31 +21,33 @@ export default function RankingList() {
   }
 
   return (
-    <div className="blueTable">
-      <table>
-        <thead className="head">
-          <tr>
-            <th>Estado</th>
-            <th>Casos</th>
-            <th>Óbitos</th>
-            <th>Letalidade</th>
-          </tr>
-        </thead>
-        {rankingListData.map((uf) => {
-          return (
-            <tbody key={uf.uid}>
-              <tr>
-                <td>
-                  <strong>{uf.state}</strong>
-                </td>
-                <td>{uf.cases}</td>
-                <td>{uf.deaths}</td>
-                <td>{getLetality(uf)}</td>
-              </tr>
-            </tbody>
-          );
-        })}
-      </table>
+    <div className="c">
+      <div className="blueTable">
+        <table>
+          <thead className="head">
+            <tr>
+              <th>Estado</th>
+              <th>Casos</th>
+              <th>Óbitos</th>
+              <th>Letalidade</th>
+            </tr>
+          </thead>
+          {rankingListData.map((uf) => {
+            return (
+              <tbody key={uf.uid}>
+                <tr>
+                  <td>
+                    <strong>{uf.state}</strong>
+                  </td>
+                  <td>{uf.cases}</td>
+                  <td>{uf.deaths}</td>
+                  <td>{getLetality(uf)}</td>
+                </tr>
+              </tbody>
+            );
+          })}
+        </table>
+      </div>
     </div>
   );
 }
