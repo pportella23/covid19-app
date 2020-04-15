@@ -10,7 +10,7 @@ export default function Chart({ chartData, legendPosition }) {
   const displayLegend = true;
 
   return (
-    <div className="chart">
+    <div className="Dchart">
       <Doughnut
         height={500}
         width={500}

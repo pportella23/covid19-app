@@ -3,13 +3,13 @@
     text-align: left;
     border-collapse: collapse;
     overflow-y: scroll;
-    height: 40rem;
+    height: 31rem;
     margin-bottom: 2%;
     border-radius: 8px;
     border: 1px solid #dbe9f5;
     border-radius: 16px;
     box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
-    margin-right: 1%;
+    /* margin-right: 1%; */
     
   }
   .blueTable td {
