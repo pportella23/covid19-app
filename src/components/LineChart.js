@@ -183,12 +183,30 @@ export default function Chart() {
       }
     });
 
-    const week1 = casesWeek2 - casesWeek1;
-    const week2 = casesWeek3 - casesWeek2;
-    const week3 = casesWeek4 - casesWeek3;
-    const week4 = casesWeek5 - casesWeek4;
-    const week5 = casesWeek6 - casesWeek5;
-    const week6 = casesWeek7 - casesWeek6;
+    let week1 = casesWeek2 - casesWeek1;
+    if (week1 < 0){
+      week1 = 0;
+    }
+    let week2 = casesWeek3 - casesWeek2;
+    if (week2 < 0){
+      week2 = 0;
+    }
+    let week3 = casesWeek4 - casesWeek3;
+    if (week3 < 0){
+      week3 = 0;
+    }
+    let week4 = casesWeek5 - casesWeek4;
+    if (week4 < 0){
+      week4 = 0;
+    }
+    let week5 = casesWeek6 - casesWeek5;
+    if (week5 < 0){
+      week5 = 0;
+    }
+    let week6 = casesWeek7 - casesWeek6;
+    if (week6 < 0){
+      week6 = 0;
+    }
 
     const obj = {
       week1: {
