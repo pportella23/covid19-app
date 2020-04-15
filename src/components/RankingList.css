@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 2px solid #dbe9f5;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);
+}
+
+td, th {
+    padding: 4%;
+}

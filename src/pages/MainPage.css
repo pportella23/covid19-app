@@ -20,8 +20,17 @@
     justify-content: space-evenly;
 }
 
+@media only screen and (max-width: 1050px){
+    .charts{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+}
+
 header {
-    font-size: 3rem;
+    font-size: 10rem;
     font-weight: bold;
     border-bottom: 1px solid #dbe9f5;
     margin-bottom: 1%;

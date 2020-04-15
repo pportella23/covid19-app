@@ -3,6 +3,9 @@ import { Line } from "react-chartjs-2";
 import api from "../services/api";
 import Select from "react-select";
 import uf from "../utils/uf";
+import "./LineChart.css";
+
+//6370ff
 
 export default function Chart() {
   const [chartData, setCharData] = useState({});
@@ -27,13 +30,14 @@ export default function Chart() {
     } else {
       month = todaysDate.getMonth() + 1;
     }
-    if (todaysDate.getDate() - 1 < 10) {
-      day = "0" + (todaysDate.getDate() - 1);
+    if (todaysDate.getDate() < 10) {
+      day = "0" + (todaysDate.getDate());
     } else {
-      day = todaysDate.getDate() - 1;
+      day = todaysDate.getDate();
     }
 
     return year + month + day;
+    
   }
 
   async function getData(test) {
@@ -42,40 +46,56 @@ export default function Chart() {
 
     const dataWeek1 = await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 28 * days))}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 42 * days))}`
       )
     ).data.data;
     const dataWeek2 = await await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 21 * days))}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 35 * days))}`
       )
     ).data.data;
     const dataWeek3 = await await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 14 * days))}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 28 * days))}`
       )
     ).data.data;
     const dataWeek4 = await await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 7 * days))}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 21 * days))}`
       )
     ).data.data;
     const dataWeek5 = await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 1 * days))}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 14 * days))}`
       )
     ).data.data;
+    const dataWeek6 = await (
+      await api.get(
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 7 * days))}`
+      )
+    ).data.data;
+    const dataWeek7 = await (
+      await api.get(
+        `/api/report/v1/brazil/${formatDate(todaysDate)}`
+      )
+    ).data.data;    
+
+
 
     let casesWeek1 = "";
     let casesWeek2 = "";
     let casesWeek3 = "";
     let casesWeek4 = "";
     let casesWeek5 = "";
+    let casesWeek6 = "";
+    let casesWeek7 = "";
 
     let dayWeek2 = "";
     let dayWeek3 = "";
     let dayWeek4 = "";
     let dayWeek5 = "";
+    let dayWeek6 = "";
+    let dayWeek7 = "";
 
     Object.entries(dataWeek1).map((uf) => {
       if (uf[1].uf === test) {
@@ -135,10 +155,37 @@ export default function Chart() {
       }
     });
 
+    Object.entries(dataWeek6).map((uf) => {
+      if (uf[1].uf === test) {
+        casesWeek6 = uf[1].cases;
+        dayWeek6 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek6 = uf[1].cases;
+          dayWeek6 = new Date(uf[1].datetime);
+        }
+      }
+    });
+
+    Object.entries(dataWeek7).map((uf) => {
+      if (uf[1].uf === test) {
+        casesWeek7 = uf[1].cases;
+        dayWeek7 = new Date(uf[1].datetime);
+      } else {
+        if (uf[1].uf === "RS") {
+          casesWeek7 = uf[1].cases;
+          dayWeek7 = new Date(uf[1].datetime);
+        }
+      }
+    });
+
     const week1 = casesWeek2 - casesWeek1;
     const week2 = casesWeek3 - casesWeek2;
     const week3 = casesWeek4 - casesWeek3;
     const week4 = casesWeek5 - casesWeek4;
+    const week5 = casesWeek6 - casesWeek5;
+    const week6 = casesWeek7 - casesWeek6;
+    
 
     const obj = {
       week1: {
@@ -157,6 +204,14 @@ export default function Chart() {
         cases: week4,
         date: dayWeek5,
       },
+      week5: {
+        cases: week5,
+        date: dayWeek6,
+      },
+      week6: {
+        cases: week6,
+        date: dayWeek7,
+      },
     };
     return obj;
   }
@@ -164,7 +219,6 @@ export default function Chart() {
   async function getChartData(uf) {
     setBusy(true);
     const obj = await getData(uf.value);
-    console.log(obj);
 
     setCharData({
       labels: [
@@ -172,22 +226,26 @@ export default function Chart() {
         `${obj.week2.date.getDate()}/${obj.week2.date.getMonth() + 1}`,
         `${obj.week3.date.getDate()}/${obj.week3.date.getMonth() + 1}`,
         `${obj.week4.date.getDate()}/${obj.week4.date.getMonth() + 1}`,
+        `${obj.week5.date.getDate()}/${obj.week5.date.getMonth() + 1}`,
+        `${obj.week6.date.getDate()}/${obj.week6.date.getMonth() + 1}`,
       ],
       datasets: [
         {
-          label: "Número do aumento de casos por semana",
+          label: "Aumento de casos por semana",
           data: [
             obj.week1.cases,
             obj.week2.cases,
             obj.week3.cases,
             obj.week4.cases,
+            obj.week5.cases,
+            obj.week6.cases,
           ],
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.6)",
-            "rgba(54, 162, 235, 0.6)",
-            "rgba(255, 206, 86, 0.6)",
-            "rgba(75, 192, 192, 0.6)",
-          ],
+          borderColor: "#6370ff",
+          backgroundColor: "rgba(99, 112, 255, 0.3)",
+          pointBackgroundColor: "#6370ff",
+          pointRadius: 4,
+          pointHoverRadius: 8,
+          pointHoverBorderColor: "#55bae7",
         },
       ],
     });
@@ -200,30 +258,37 @@ export default function Chart() {
 
   return (
     <div className="chart">
+      <p className="title">{`Aumento de casos no estado ${value ? value.value : "RS"}`}</p>
       <div className="select">
         <Select
           value={value}
           onChange={(selected) => handleChange(selected)}
           options={uf}
-          // className="select1"
+          placeholder="Selecione um Estado"
+          className="select"
         />
       </div>
 
       {isBusy ? (
-        <p>Loading</p>
+        <Line
+        height={100}
+        data={chartData}
+        options={{
+          legend: {
+            display: true,
+            position: "bottom",
+          },
+          maintainAspectRatio: true,
+        }}
+        />
       ) : (
         <Line
           height={100}
           data={chartData}
           options={{
-            title: {
-              display: true,
-              text: `Corona no estado ${value ? value.value : "RS"}`,
-              fontSize: 25,
-            },
             legend: {
               display: true,
-              position: "top",
+              position: "bottom",
             },
             maintainAspectRatio: true,
           }}

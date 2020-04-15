@@ -2,19 +2,15 @@ import React, { useState, useEffect } from "react";
 import LineChart from "../components/LineChart";
 import DoughnutChart from "../components/DoughnutChart";
 import TotalStats from "../components/TotalStats";
+import RankingList from "../components/RankingList";
 import "./MainPage.css";
 import api from "../services/api";
 
 export default function MainPage() {
-  const [chartData, setCharData] = useState({});
-  const [isBusy, setBusy] = useState(true);
 
   //Doughnut
   const [loadingDoughnut, setLoadingDoughnut] = useState(true);
   const [doughnutData, setDoughnutData] = useState({});
-
-  //UF
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     chartDoughnut();
@@ -26,7 +22,7 @@ export default function MainPage() {
     );
 
     const obj = {
-      cases: data.data.data.confirmed,
+      cases: data.data.data.cases,
       deaths: data.data.data.deaths,
       recovers: data.data.data.recovered,
       total: data.data.data.confirmed,
@@ -38,12 +34,12 @@ export default function MainPage() {
     const obj = await getDoughnutData();
 
     setDoughnutData({
-      labels: [`Recuperados`, `Confirmados`, `Mortes`],
+      labels: [`Recuperados`, `Casos Ativos`, `Óbitos`],
       datasets: [
         {
           label: "Casos",
           data: [obj.recovers, obj.cases, obj.deaths],
-          backgroundColor: ["#37ab37", "#4952ff", "#ec5353"],
+          backgroundColor: ["#50c878", "#6370ff", "#e8544f"],
         },
       ],
     });
@@ -55,11 +51,14 @@ export default function MainPage() {
       <header className="title">Coronavírus</header>
       <TotalStats />
       <LineChart />
-      {loadingDoughnut ? (
-        <p>Loading</p>
-      ) : (
-        <DoughnutChart chartData={doughnutData} legendPosition="top" />
-      )}
+      <div className="charts">
+        {loadingDoughnut ? (
+          <p>Loading</p>
+        ) : (
+            <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
+          )}
+      <RankingList />
+      </div>
     </div>
   );
 }
