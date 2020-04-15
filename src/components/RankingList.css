@@ -1,15 +1,66 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.blueTable {
+    /* border: 0px solid #1C6EA4; */
+    text-align: left;
+    border-collapse: collapse;
+    overflow-y: scroll;
+    height: 40rem;
+    margin-bottom: 2%;
+    border-radius: 8px;
+    border: 1px solid #dbe9f5;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
+    margin-right: 1%;
+    
+  }
+  .blueTable td {
+    border-bottom: 1px solid #dbe9f5;
+    border-right: 1px solid #dbe9f5;
+    /* border-radius: 2px; */
+    /* box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);  */
+    padding: 3%;
+  }
+  .blueTable tbody td {
+    font-size: 1rem;
+    color: #000000;
+  }
+  .blueTable tr:nth-child(even) {
+    background: #FFFFFF;
+  }
+  .blueTable td:nth-child(even) {
+    background: #FFFFFF;
+  }
+  .blueTable thead {
+    /* background: rgba(99, 112, 255, 0.3); */
+  }
+  .blueTable thead th {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #6370FF;
+    padding: 2%;
+    border-bottom: 1px solid #dbe9f5;
+    border-right: 1px solid #dbe9f5;
+    
 
-table {
-    border: 2px solid #dbe9f5;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
     border-radius: 4px;
-    box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);
-}
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d3d3d3;
+    border-radius: 4px;
 
-td, th {
-    padding: 4%;
-}
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }

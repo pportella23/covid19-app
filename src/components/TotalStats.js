@@ -43,7 +43,7 @@ export default function TotalStats() {
 
   return (
     <>
-      <div className="container">
+      <div className="cont">
         <div className="box">
           <p className="containerFont">Casos Confirmados</p>
           <p>

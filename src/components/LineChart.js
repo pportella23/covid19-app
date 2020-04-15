@@ -73,11 +73,18 @@ export default function Chart() {
         `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 7 * days))}`
       )
     ).data.data;
-    const dataWeek7 = await (
-      await api.get(
-        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 1 * days))}`
-      )
+    let dataWeek7 = await (
+      await api.get(`/api/report/v1/brazil/${formatDate(todaysDate)}`)
     ).data.data;
+
+    //Treat error when there is no data in api, in specific day
+    if (dataWeek7.length === 0) {
+      dataWeek7 = await (
+        await api.get(
+          `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 1 * days))}`
+        )
+      ).data.data;
+    }
 
     let casesWeek1 = "";
     let casesWeek2 = "";

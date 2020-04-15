@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
+import "./DoughnutChart.css";
 
 export default function Chart({ chartData, legendPosition }) {
   const [data] = useState(chartData);
@@ -11,8 +12,8 @@ export default function Chart({ chartData, legendPosition }) {
   return (
     <div className="chart">
       <Doughnut
-        height={300}
-        width= {300}
+        height={500}
+        width={500}
         data={data}
         options={{
           title: {
