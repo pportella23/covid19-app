@@ -31,13 +31,12 @@ export default function Chart() {
       month = todaysDate.getMonth() + 1;
     }
     if (todaysDate.getDate() < 10) {
-      day = "0" + (todaysDate.getDate());
+      day = "0" + todaysDate.getDate();
     } else {
       day = todaysDate.getDate();
     }
 
     return year + month + day;
-    
   }
 
   async function getData(test) {
@@ -76,11 +75,9 @@ export default function Chart() {
     ).data.data;
     const dataWeek7 = await (
       await api.get(
-        `/api/report/v1/brazil/${formatDate(todaysDate)}`
+        `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 1 * days))}`
       )
-    ).data.data;    
-
-
+    ).data.data;
 
     let casesWeek1 = "";
     let casesWeek2 = "";
@@ -185,7 +182,6 @@ export default function Chart() {
     const week4 = casesWeek5 - casesWeek4;
     const week5 = casesWeek6 - casesWeek5;
     const week6 = casesWeek7 - casesWeek6;
-    
 
     const obj = {
       week1: {
@@ -258,7 +254,9 @@ export default function Chart() {
 
   return (
     <div className="chart">
-      <p className="title">{`Aumento de casos no estado ${value ? value.value : "RS"}`}</p>
+      <p className="title">{`Aumento de casos no estado ${
+        value ? value.value : "RS"
+      }`}</p>
       <div className="select">
         <Select
           value={value}
@@ -271,15 +269,15 @@ export default function Chart() {
 
       {isBusy ? (
         <Line
-        height={100}
-        data={chartData}
-        options={{
-          legend: {
-            display: true,
-            position: "bottom",
-          },
-          maintainAspectRatio: true,
-        }}
+          height={100}
+          data={chartData}
+          options={{
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+            maintainAspectRatio: true,
+          }}
         />
       ) : (
         <Line

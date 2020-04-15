@@ -7,7 +7,6 @@ import "./MainPage.css";
 import api from "../services/api";
 
 export default function MainPage() {
-
   //Doughnut
   const [loadingDoughnut, setLoadingDoughnut] = useState(true);
   const [doughnutData, setDoughnutData] = useState({});
@@ -48,16 +47,16 @@ export default function MainPage() {
 
   return (
     <div className="MainPage">
-      <header className="title">Coronavírus</header>
+      <header>Coronavírus</header>
       <TotalStats />
       <LineChart />
       <div className="charts">
         {loadingDoughnut ? (
           <p>Loading</p>
         ) : (
-            <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
-          )}
-      <RankingList />
+          <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
+        )}
+        <RankingList />
       </div>
     </div>
   );
