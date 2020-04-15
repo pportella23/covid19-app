@@ -11,9 +11,9 @@ export default function Chart({ chartData, legendPosition }) {
 
   return (
     <div className="Dchart">
-      <Doughnut
-        height={100}
-        width={300}
+      <Doughnut className="hchart"
+        // height={100}
+        // width={300}
         data={data}
         options={{
           title: {
