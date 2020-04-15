@@ -43,6 +43,12 @@ export default function TotalStats() {
 
   return (
     <>
+      <div className="updated">
+        <p className="updateFont">Última atualização</p>
+        <p>
+          <strong className="">{updated}</strong>
+        </p>
+      </div>
       <div className="cont">
         <div className="box">
           <p className="containerFont">Casos Confirmados</p>
@@ -62,12 +68,6 @@ export default function TotalStats() {
             <strong className="strongLetal">{getLetality()}</strong>
           </p>
         </div>
-      </div>
-      <div className="updated">
-        <p className="updateFont">Última atualização</p>
-        <p>
-          <strong className="">{updated}</strong>
-        </p>
       </div>
     </>
   );

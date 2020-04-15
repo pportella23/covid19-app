@@ -28,14 +28,14 @@
     /* border-radius: 2px; */
     /* box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);  */
     padding: 3%;
-    width: 80%;
-
+    /* width: 80%; */
+    /* width: 100%; */
   }
   .blueTable tbody td {
     font-size: 1rem;
     color: #000000;
-    width: 80%;
-
+    /* width: 80%; */
+    /* width: 100%; */
   }
   .blueTable tr:nth-child(even) {
     background: #FFFFFF;
@@ -43,9 +43,7 @@
   .blueTable td:nth-child(even) {
     background: #FFFFFF;
   }
-  .blueTable thead {
-    /* background: rgba(99, 112, 255, 0.3); */
-  }
+
   .blueTable thead th {
     font-size: 1.2rem;
     font-weight: bold;
@@ -53,8 +51,42 @@
     padding: 2%;
     border-bottom: 1px solid #dbe9f5;
     border-right: 1px solid #dbe9f5;
-    width: 80%;
+    /* width: 80%; */
   }
+
+  table {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 1050px){
+    .blueTable {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .c {
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+
+    .blueTable thead th {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #6370FF;
+      padding: 2%;
+      border-bottom: 1px solid #dbe9f5;
+      border-right: 1px solid #dbe9f5;
+      /* width: 80%; */
+    }
+
+    .blueTable tbody td {
+      font-size: 0.9rem;
+      color: #000000;
+      /* width: 80%; */
+      /* width: 100%; */
+    }
+    
+}
 
   ::-webkit-scrollbar {
     width: 10px;

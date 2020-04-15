@@ -5,7 +5,7 @@
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 1%;
+    margin-top: 2%;
     border: 1px solid #dbe9f5;
     border-radius: 16px;
     box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);
@@ -26,6 +26,7 @@
         box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);
         padding: 10px;
     }
+
 }
 
 
