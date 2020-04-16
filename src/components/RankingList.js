@@ -20,6 +20,56 @@ export default function RankingList() {
     setRankingListData(data);
   }
 
+  function sortByCases(sort){
+    let sorted = rankingListData.sort((a,b) => _caseSort(a,b,sort)).map(e => {
+      const newItem = {}
+      newItem.uid = e.uid++
+      newItem.state = e.state
+      newItem.cases = e.cases
+      newItem.deaths = e.deaths
+      return newItem
+    })
+   setRankingListData(sorted)
+  }
+
+  function sortByDeaths(sort){
+    let sorted = rankingListData.sort((a,b) => _deathSort(a,b,sort)).map(e => {
+      const newItem = {}
+      newItem.uid = e.uid++
+      newItem.state = e.state
+      newItem.cases = e.cases
+      newItem.deaths = e.deaths
+      return newItem
+    })
+   setRankingListData(sorted)
+  }
+
+  function _deathSort(a,b,sort){
+    if(sort === "desc"){
+      if(a.deaths > b.deaths) return 1
+      else if(a.deaths < b.deaths) return -1
+      else return 0
+    }
+    else if(sort === "asc"){
+      if(a.deaths < b.deaths) return 1
+      else if(a.deaths > b.deaths) return -1
+      else return 0
+    }
+  }
+
+  function _caseSort(a,b,sort){
+    if(sort === "desc"){
+      if(a.cases > b.cases) return 1
+      else if(a.cases < b.cases) return -1
+      else return 0
+    }
+    else if(sort === "asc"){
+      if(a.cases < b.cases) return 1
+      else if(a.cases > b.cases) return -1
+      else return 0
+    }
+  }
+
   return (
     <div className="c">
       <div className="blueTable">
@@ -27,8 +77,16 @@ export default function RankingList() {
           <thead className="head">
             <tr>
               <th>Estado</th>
-              <th>Casos</th>
-              <th>Óbitos</th>
+              <th>Casos
+                <div class="sort-controls">
+                  <div onClick={() => sortByCases("asc")} class="text-asc">Asc</div>|<div onClick={() => sortByCases("desc")} class="text-desc">Desc</div>
+                </div>
+              </th>
+              <th>Óbitos
+                <div class="sort-controls">
+                  <div onClick={() => sortByDeaths("asc")} class="text-asc">Asc</div>|<div onClick={() => sortByDeaths("desc")} class="text-desc">Desc</div>
+                </div>
+              </th>
               <th>Letalidade</th>
             </tr>
           </thead>

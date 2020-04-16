@@ -109,3 +109,23 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #666;
   }
+
+  .text-asc {
+    font-size: 0.8rem;
+    cursor: grab;
+    margin-right: 0.5rem;
+  }
+  
+  .text-desc {
+    font-size: 0.8rem;
+    cursor: grab;
+    margin-left: 0.5rem;
+  }
+
+  .sort-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
