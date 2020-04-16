@@ -1,8 +1,7 @@
 .c {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-    
 }
 
 /* TIRAR MARGEM DA LISTA QUANDO FOR MENOR A TELA */

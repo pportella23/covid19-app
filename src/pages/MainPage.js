@@ -5,6 +5,7 @@ import TotalStats from "../components/TotalStats";
 import RankingList from "../components/RankingList";
 import "./MainPage.css";
 import api from "../services/api";
+import ListTweets from "../components/ListTweets";
 
 export default function MainPage() {
   //Doughnut
@@ -50,12 +51,15 @@ export default function MainPage() {
       <header>Coronavírus</header>
       <TotalStats />
       <LineChart />
+      {loadingDoughnut ? (
+        <p>Loading</p>
+      ) : (
+        <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
+      )}
       <div className="charts">
-        {loadingDoughnut ? (
-          <p>Loading</p>
-        ) : (
-          <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
-        )}
+        <div className="tweet">
+          <ListTweets />
+        </div>
         <RankingList />
       </div>
     </div>
