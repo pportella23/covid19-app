@@ -20,8 +20,8 @@ export default function RankingList() {
     setRankingListData(data);
   }
 
-  function sortByCases(sort){
-    let sorted = rankingListData.sort((a,b) => _caseSort(a,b,sort)).map(e => {
+  function sortList(order, attr){
+    let sorted = rankingListData.sort((a,b) => _sortHelper(a, b, order, attr)).map(e => {
       const newItem = {}
       newItem.uid = e.uid++
       newItem.state = e.state
@@ -32,40 +32,15 @@ export default function RankingList() {
    setRankingListData(sorted)
   }
 
-  function sortByDeaths(sort){
-    let sorted = rankingListData.sort((a,b) => _deathSort(a,b,sort)).map(e => {
-      const newItem = {}
-      newItem.uid = e.uid++
-      newItem.state = e.state
-      newItem.cases = e.cases
-      newItem.deaths = e.deaths
-      return newItem
-    })
-   setRankingListData(sorted)
-  }
-
-  function _deathSort(a,b,sort){
-    if(sort === "desc"){
-      if(a.deaths > b.deaths) return 1
-      else if(a.deaths < b.deaths) return -1
+  function _sortHelper(a, b, order, attr){
+    if(order === "asc"){
+      if(a[attr] > b[attr]) return 1
+      else if(a[attr] < b[attr]) return -1
       else return 0
     }
-    else if(sort === "asc"){
-      if(a.deaths < b.deaths) return 1
-      else if(a.deaths > b.deaths) return -1
-      else return 0
-    }
-  }
-
-  function _caseSort(a,b,sort){
-    if(sort === "desc"){
-      if(a.cases > b.cases) return 1
-      else if(a.cases < b.cases) return -1
-      else return 0
-    }
-    else if(sort === "asc"){
-      if(a.cases < b.cases) return 1
-      else if(a.cases > b.cases) return -1
+    else if(order === "desc"){
+      if(a[attr] < b[attr]) return 1
+      else if(a[attr] > b[attr]) return -1
       else return 0
     }
   }
@@ -76,15 +51,19 @@ export default function RankingList() {
         <table>
           <thead className="head">
             <tr>
-              <th>Estado</th>
+              <th>Estado
+              <div class="sort-controls">
+                <div onClick={() => sortList("asc", "state")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "state")} class="text-desc">Desc</div>
+              </div>
+              </th>
               <th>Casos
                 <div class="sort-controls">
-                  <div onClick={() => sortByCases("asc")} class="text-asc">Asc</div>|<div onClick={() => sortByCases("desc")} class="text-desc">Desc</div>
+                  <div onClick={() => sortList("asc", "cases")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "cases")} class="text-desc">Desc</div>
                 </div>
               </th>
               <th>Óbitos
                 <div class="sort-controls">
-                  <div onClick={() => sortByDeaths("asc")} class="text-asc">Asc</div>|<div onClick={() => sortByDeaths("desc")} class="text-desc">Desc</div>
+                  <div onClick={() => sortList("asc", "deaths")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "deaths")} class="text-desc">Desc</div>
                 </div>
               </th>
               <th>Letalidade</th>
