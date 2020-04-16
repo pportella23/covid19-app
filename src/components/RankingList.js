@@ -9,8 +9,8 @@ export default function RankingList() {
     getRankingListData();
   }, []);
 
-  function getLetality(uf) {
-    return `${((uf.deaths * 100) / uf.cases).toFixed(2)}%`;
+  function getLethality(uf) {
+    return ((uf.deaths * 100) / uf.cases).toFixed(2);
   }
 
   async function getRankingListData() {
@@ -20,16 +20,73 @@ export default function RankingList() {
     setRankingListData(data);
   }
 
+  function sortList(order, attr){
+    let sorted = rankingListData.sort((a,b) => _sortHelper(a, b, order, attr)).map(e => {
+      const newItem = {}
+      newItem.uid = e.uid++
+      newItem.state = e.state
+      newItem.cases = e.cases
+      newItem.deaths = e.deaths
+      return newItem
+    })
+   setRankingListData(sorted)
+  }
+
+  function _sortHelper(a, b, order, attr){
+    if(attr === "lethality"){
+      const lethA = getLethality(a)
+      const lethB = getLethality(b)
+      if(order === "asc"){
+        if(lethA > lethB) return 1
+        else if(lethA < lethB) return -1
+        else return 0
+      }
+      else if(order === "desc"){
+        if(lethA < lethB) return 1
+        else if(lethA > lethB) return -1
+        else return 0
+      }
+    }
+    else{
+      if(order === "asc"){
+        if(a[attr] > b[attr]) return 1
+        else if(a[attr] < b[attr]) return -1
+        else return 0
+      }
+      else if(order === "desc"){
+        if(a[attr] < b[attr]) return 1
+        else if(a[attr] > b[attr]) return -1
+        else return 0
+      }
+    }
+  }
+
   return (
     <div className="c">
       <div className="blueTable">
         <table>
           <thead className="head">
             <tr>
-              <th>Estado</th>
-              <th>Casos</th>
-              <th>Óbitos</th>
-              <th>Letalidade</th>
+              <th>Estado
+              <div class="sort-controls">
+                <div onClick={() => sortList("asc", "state")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "state")} class="text-desc">Desc</div>
+              </div>
+              </th>
+              <th>Casos
+                <div class="sort-controls">
+                  <div onClick={() => sortList("asc", "cases")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "cases")} class="text-desc">Desc</div>
+                </div>
+              </th>
+              <th>Óbitos
+                <div class="sort-controls">
+                  <div onClick={() => sortList("asc", "deaths")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "deaths")} class="text-desc">Desc</div>
+                </div>
+              </th>
+              <th>Letalidade
+                <div class="sort-controls">
+                  <div onClick={() => sortList("asc", "lethality")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "lethality")} class="text-desc">Desc</div>
+                </div>
+              </th>
             </tr>
           </thead>
           {rankingListData.map((uf) => {
@@ -41,7 +98,7 @@ export default function RankingList() {
                   </td>
                   <td>{uf.cases}</td>
                   <td>{uf.deaths}</td>
-                  <td>{getLetality(uf)}</td>
+                  <td>{getLethality(uf)}%</td>
                 </tr>
               </tbody>
             );
