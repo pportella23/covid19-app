@@ -53,11 +53,22 @@ export default function Chart() {
         `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 35 * days))}`
       )
     ).data.data;
-    const dataWeek3 = await await (
+    // console.log(dataWeek2);
+    let dataWeek3 = await await (
       await api.get(
         `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 28 * days))}`
       )
     ).data.data;
+    if (dataWeek3.length === 0) {
+      dataWeek3 = await (
+        await api.get(
+          `/api/report/v1/brazil/${formatDate(
+            new Date(todaysDate - 29 * days)
+          )}`
+        )
+      ).data.data;
+    }
+
     const dataWeek4 = await await (
       await api.get(
         `/api/report/v1/brazil/${formatDate(new Date(todaysDate - 21 * days))}`
@@ -184,27 +195,27 @@ export default function Chart() {
     });
 
     let week1 = casesWeek2 - casesWeek1;
-    if (week1 < 0){
+    if (week1 < 0) {
       week1 = 0;
     }
     let week2 = casesWeek3 - casesWeek2;
-    if (week2 < 0){
+    if (week2 < 0) {
       week2 = 0;
     }
     let week3 = casesWeek4 - casesWeek3;
-    if (week3 < 0){
+    if (week3 < 0) {
       week3 = 0;
     }
     let week4 = casesWeek5 - casesWeek4;
-    if (week4 < 0){
+    if (week4 < 0) {
       week4 = 0;
     }
     let week5 = casesWeek6 - casesWeek5;
-    if (week5 < 0){
+    if (week5 < 0) {
       week5 = 0;
     }
     let week6 = casesWeek7 - casesWeek6;
-    if (week6 < 0){
+    if (week6 < 0) {
       week6 = 0;
     }
 
@@ -240,6 +251,7 @@ export default function Chart() {
   async function getChartData(uf) {
     setBusy(true);
     const obj = await getData(uf.value);
+    console.log(obj);
 
     setCharData({
       labels: [
