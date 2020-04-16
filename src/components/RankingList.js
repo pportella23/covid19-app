@@ -9,14 +9,23 @@ export default function RankingList() {
     getRankingListData();
   }, []);
 
-  function getLethality(uf) {
-    return ((uf.deaths * 100) / uf.cases).toFixed(2);
+  function _getLethality(uf) {
+    return parseFloat(((uf.deaths * 100) / uf.cases).toFixed(2));
   }
 
   async function getRankingListData() {
-    const data = await (
+    let data = await (
       await api.get("https://covid19-brazil-api.now.sh/api/report/v1")
     ).data.data;
+    data = data.map(e => {
+      const newItem = {}
+      newItem.uid = e.uid++
+      newItem.state = e.state
+      newItem.cases = e.cases
+      newItem.deaths = e.deaths
+      newItem.lethality = _getLethality(e)
+      return newItem
+    })
     setRankingListData(data);
   }
 
@@ -27,6 +36,7 @@ export default function RankingList() {
       newItem.state = e.state
       newItem.cases = e.cases
       newItem.deaths = e.deaths
+      newItem.lethality = e.lethality
       return newItem
     })
    setRankingListData(sorted)
@@ -34,8 +44,8 @@ export default function RankingList() {
 
   function _sortHelper(a, b, order, attr){
     if(attr === "lethality"){
-      const lethA = getLethality(a)
-      const lethB = getLethality(b)
+      const lethA = a.lethality
+      const lethB = b.lethality
       if(order === "asc"){
         if(lethA > lethB) return 1
         else if(lethA < lethB) return -1
@@ -98,7 +108,7 @@ export default function RankingList() {
                   </td>
                   <td>{uf.cases}</td>
                   <td>{uf.deaths}</td>
-                  <td>{getLethality(uf)}%</td>
+                  <td>{uf.lethality}%</td>
                 </tr>
               </tbody>
             );
