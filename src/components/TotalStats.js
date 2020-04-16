@@ -7,6 +7,7 @@ export default function TotalStats() {
   const [updated, setUpdated] = useState("");
   const [countryCase, setCountryCase] = useState("");
   const [countryDeath, setCountryDeath] = useState("");
+  const [countryRecovered, setCountryRecovered] = useState("");
 
   useEffect(() => {
     getCountryCases();
@@ -21,6 +22,7 @@ export default function TotalStats() {
     const cases = data.data.data.confirmed;
     const deaths = data.data.data.deaths;
     const updatedAt = data.data.data.updated_at;
+    const recovered = data.data.data.recovered;
     let d = new Date(updatedAt);
     let up =
       d.getDate() +
@@ -34,6 +36,7 @@ export default function TotalStats() {
 
     setCountryCase(numberWithCommas(cases));
     setCountryDeath(numberWithCommas(deaths));
+    setCountryRecovered(numberWithCommas(recovered));
     setUpdated(up);
   }
 
@@ -63,9 +66,9 @@ export default function TotalStats() {
           </p>
         </div>
         <div className="box">
-          <p className="containerFont">Taxa de Letalidade</p>
+          <p className="containerFont">Total de Recuperados</p>
           <p>
-            <strong className="strongLetal">{getLetality()}</strong>
+            <strong className="strongLetal">{countryRecovered}</strong>
           </p>
         </div>
       </div>

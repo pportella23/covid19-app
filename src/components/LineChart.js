@@ -278,7 +278,7 @@ export default function Chart() {
           pointBackgroundColor: "#6370ff",
           pointRadius: 4,
           pointHoverRadius: 8,
-          pointHoverBorderColor: "#55bae7",
+          pointHoverBorderColor: "rgba(121, 209, 255, 0.9)",
         },
       ],
     });

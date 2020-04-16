@@ -3,9 +3,10 @@ import LineChart from "../components/LineChart";
 import DoughnutChart from "../components/DoughnutChart";
 import TotalStats from "../components/TotalStats";
 import RankingList from "../components/RankingList";
+import ListTweets from "../components/ListTweets";
+import MiddleList from "../components/MiddleList";
 import "./MainPage.css";
 import api from "../services/api";
-import ListTweets from "../components/ListTweets";
 
 export default function MainPage() {
   //Doughnut
@@ -39,7 +40,7 @@ export default function MainPage() {
         {
           label: "Casos",
           data: [obj.recovers, obj.cases, obj.deaths],
-          backgroundColor: ["#50c878", "#6370ff", "#e8544f"],
+          backgroundColor: ["rgba(92, 188, 124, 0.9)", "rgba(121, 209, 255, 0.9)", "rgba(255, 87, 77, 0.9)"],
         },
       ],
     });
@@ -51,17 +52,18 @@ export default function MainPage() {
       <header>Coronavírus</header>
       <TotalStats />
       <LineChart />
+      <div className="charts">
       {loadingDoughnut ? (
         <p>Loading</p>
       ) : (
         <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
       )}
-      <div className="charts">
+          <MiddleList />
         <div className="tweet">
           <ListTweets />
         </div>
-        <RankingList />
       </div>
+        <RankingList />
     </div>
   );
 }
