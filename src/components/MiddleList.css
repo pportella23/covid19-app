@@ -1,10 +1,37 @@
 .MiddleList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
     margin-top: 4%;
     margin-bottom: 4%;
+    margin-left: 3%;
+    margin-right: 3%;
     border: 1px solid #dbe9f5;
     border-radius: 16px;
     box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);
     padding: 2.3rem;
+    height: 30rem;
+}
 
-    height: 475px;
+.letTitle{
+    font-size: 2rem;
+    color: #62625d;
+    margin-bottom: 20%;
+}
+
+.content {
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1050px){
+    .MiddleList{
+        margin-left: 1%;
+        margin-bottom: 1%;
+    }
+
 }
