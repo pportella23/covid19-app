@@ -78,23 +78,23 @@ export default function RankingList() {
           <thead className="head">
             <tr>
               <th>Estado
-              <div class="sort-controls">
-                <div onClick={() => sortList("asc", "state")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "state")} class="text-desc">Desc</div>
+              <div className="sort-controls">
+                <div onClick={() => sortList("asc", "state")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "state")} className="text-desc">Desc</div>
               </div>
               </th>
               <th>Casos
-                <div class="sort-controls">
-                  <div onClick={() => sortList("asc", "cases")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "cases")} class="text-desc">Desc</div>
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "cases")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "cases")} className="text-desc">Desc</div>
                 </div>
               </th>
               <th>Óbitos
-                <div class="sort-controls">
-                  <div onClick={() => sortList("asc", "deaths")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "deaths")} class="text-desc">Desc</div>
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "deaths")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "deaths")} className="text-desc">Desc</div>
                 </div>
               </th>
               <th>Letalidade
-                <div class="sort-controls">
-                  <div onClick={() => sortList("asc", "lethality")} class="text-asc">Asc</div>|<div onClick={() => sortList("desc", "lethality")} class="text-desc">Desc</div>
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "lethality")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "lethality")} className="text-desc">Desc</div>
                 </div>
               </th>
             </tr>
