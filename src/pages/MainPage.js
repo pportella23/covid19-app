@@ -5,10 +5,11 @@ import TotalStats from "../components/TotalStats";
 import RankingList from "../components/RankingList";
 import ListTweets from "../components/ListTweets";
 import MiddleList from "../components/MiddleList";
+import ThemeToggle from '../components/ThemeToggle'
 import "./MainPage.css";
 import api from "../services/api";
 
-export default function MainPage() {
+export default function MainPage(props) {
   //Doughnut
   const [loadingDoughnut, setLoadingDoughnut] = useState(true);
   const [doughnutData, setDoughnutData] = useState({});
@@ -49,7 +50,10 @@ export default function MainPage() {
 
   return (
     <div className="MainPage">
-      <header>Coronavírus</header>
+      <header>
+        Coronavírus
+        <ThemeToggle clickAction={props.themeSwitcher}/>
+      </header>
       <TotalStats />
       <LineChart />
       <div className="charts">
