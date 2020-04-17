@@ -16,7 +16,7 @@ export default function MiddleList() {
 
   async function getMiddleListData() {
     const data = await (
-      await api.get("https://covid19-brazil-api.now.sh/api/report/v1/brazil")
+      await api.get("/api/report/v1/brazil")
     ).data.data;
 
     setDeaths(data.deaths);
