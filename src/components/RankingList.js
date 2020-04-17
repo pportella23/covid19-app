@@ -77,6 +77,7 @@ export default function RankingList() {
         <table>
           <thead className="head">
             <tr>
+<<<<<<< HEAD
               <th>
                 Estado
                 <div class="sort-controls">
@@ -147,6 +148,26 @@ export default function RankingList() {
                   >
                     <IoMdArrowRoundDown />
                   </div>
+=======
+              <th>Estado
+              <div className="sort-controls">
+                <div onClick={() => sortList("asc", "state")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "state")} className="text-desc">Desc</div>
+              </div>
+              </th>
+              <th>Casos
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "cases")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "cases")} className="text-desc">Desc</div>
+                </div>
+              </th>
+              <th>Óbitos
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "deaths")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "deaths")} className="text-desc">Desc</div>
+                </div>
+              </th>
+              <th>Letalidade
+                <div className="sort-controls">
+                  <div onClick={() => sortList("asc", "lethality")} className="text-asc">Asc</div>|<div onClick={() => sortList("desc", "lethality")} className="text-desc">Desc</div>
+>>>>>>> 277208cd962b10ba89d91119d9e04962d5060988
                 </div>
               </th>
             </tr>
