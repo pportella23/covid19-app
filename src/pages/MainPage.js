@@ -52,7 +52,7 @@ export default function MainPage(props) {
     <div className="MainPage">
       <header>
         Coronavírus
-        <ThemeToggle clickAction={props.themeSwitcher}/>
+        <ThemeToggle theme={props.currentTheme} toggleTheme={props.themeSwitcher}/>
       </header>
       <TotalStats />
       <LineChart />

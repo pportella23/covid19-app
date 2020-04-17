@@ -3,6 +3,7 @@ import MainPage from "./pages/MainPage";
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './Themes';
 import { GlobalStyles } from './GlobalStyles';
+import "./fontStyles.css"
 
 export default function App() {
 
@@ -19,7 +20,7 @@ export default function App() {
   return( 
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles/>
-      <MainPage themeSwitcher={toggleTheme}/>
+      <MainPage currentTheme={theme} themeSwitcher={toggleTheme}/>
     </ThemeProvider>
   );
 }
