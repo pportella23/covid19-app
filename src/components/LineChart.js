@@ -63,7 +63,7 @@ export default function Chart() {
       dataWeek3 = await (
         await api.get(
           `/api/report/v1/brazil/${formatDate(
-            new Date(todaysDate - 29 * days)
+            new Date(todaysDate - 30 * days)
           )}`
         )
       ).data.data;

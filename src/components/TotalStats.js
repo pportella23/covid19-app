@@ -40,10 +40,6 @@ export default function TotalStats() {
     setUpdated(up);
   }
 
-  function getLetality() {
-    return `${((countryDeath * 100) / countryCase).toFixed(2)}%`;
-  }
-
   return (
     <>
       <div className="updated">

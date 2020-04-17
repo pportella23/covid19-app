@@ -7,7 +7,7 @@ export default function ListTweets() {
       <TwitterTimelineEmbed
         sourceType="url"
         url="https://twitter.com/CoronavirusBra1"
-        options={{ height: 400 }}
+        options={{ height: 400, width: 600 }}
       />
     </div>
   );
