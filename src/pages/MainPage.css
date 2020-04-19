@@ -40,6 +40,6 @@ header {
     box-shadow: 0 4px 6px 0 rgba(31,70,88,.04);   
     padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }

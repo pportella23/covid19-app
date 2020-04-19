@@ -17,4 +17,16 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
   }
+
+  header{
+    color: ${({ theme }) => theme.text};
+  }
+
+  .update-font .title{
+    color: ${({ theme }) => theme.text};
+  }
+  .blueTable tbody td {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.text};
+  }
 `;

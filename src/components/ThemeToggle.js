@@ -6,28 +6,26 @@ import { ReactComponent as MoonIcon } from './assets/moon.svg';
 import { ReactComponent as SunIcon } from './assets/sun.svg';
 
 const ToggleContainer = styled.button`
-  position: relative;
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => theme.gradient};
-  width: 8rem;
-  height: 3.5rem;
-  margin: 0 auto;
-  border-radius: 30px;
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
-  font-size: 0.5rem;
-  padding: 0.5rem;
+  width: 4rem;
+  height: 1.7rem;
+  border-radius: 15px;
+  border: 1px solid ${({ theme }) => theme.toggleBorder};
+  font-size: 0.25rem;
+  padding: 0.25rem;
   overflow: hidden;
   cursor: pointer;
   svg {
-    width: 2.5rem;
+    width: 1.25rem;
     height: auto;
     transition: all 0.3s linear;
     &:first-child {
-      transform: ${({ lightTheme }) => lightTheme ? 'translateY(0)' : 'translateY(100px)'};
+      transform: ${({ lightTheme }) => lightTheme ? 'translateY(0)' : 'translateY(50px)'};
     }
     &:nth-child(2) {
-      transform: ${({ lightTheme }) => lightTheme ? 'translateY(-100px)' : 'translateY(0)'};
+      transform: ${({ lightTheme }) => lightTheme ? 'translateY(-50px)' : 'translateY(0)'};
     }
   }
 `;

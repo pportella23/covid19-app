@@ -30,18 +30,6 @@
     /* width: 80%; */
     /* width: 100%; */
   }
-  .blueTable tbody td {
-    font-size: 1rem;
-    color: #000000;
-    /* width: 80%; */
-    /* width: 100%; */
-  }
-  .blueTable tr:nth-child(even) {
-    background: #FFFFFF;
-  }
-  .blueTable td:nth-child(even) {
-    background: #FFFFFF;
-  }
 
   .blueTable thead th {
     font-size: 1.2rem;
