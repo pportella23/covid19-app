@@ -79,17 +79,17 @@ export default function RankingList() {
             <tr>
               <th>
                 Estado
-                <div class="sort-controls">
+                <div className="sort-controls">
                   <div
                     onClick={() => sortList("asc", "state")}
-                    class="text-asc"
+                    className="text-asc"
                   >
                     <IoMdArrowRoundUp />
                   </div>
                   |
                   <div
                     onClick={() => sortList("desc", "state")}
-                    class="text-desc"
+                    className="text-desc"
                   >
                     <IoMdArrowRoundDown />
                   </div>
@@ -97,17 +97,17 @@ export default function RankingList() {
               </th>
               <th>
                 Casos
-                <div class="sort-controls">
+                <div className="sort-controls">
                   <div
                     onClick={() => sortList("asc", "cases")}
-                    class="text-asc"
+                    className="text-asc"
                   >
                     <IoMdArrowRoundUp />
                   </div>
                   |
                   <div
                     onClick={() => sortList("desc", "cases")}
-                    class="text-desc"
+                    className="text-desc"
                   >
                     <IoMdArrowRoundDown />
                   </div>
@@ -115,17 +115,17 @@ export default function RankingList() {
               </th>
               <th>
                 Óbitos
-                <div class="sort-controls">
+                <div className="sort-controls">
                   <div
                     onClick={() => sortList("asc", "deaths")}
-                    class="text-asc"
+                    className="text-asc"
                   >
                     <IoMdArrowRoundUp />
                   </div>
                   |
                   <div
                     onClick={() => sortList("desc", "deaths")}
-                    class="text-desc"
+                    className="text-desc"
                   >
                     <IoMdArrowRoundDown />
                   </div>
@@ -133,17 +133,17 @@ export default function RankingList() {
               </th>
               <th>
                 Letalidade
-                <div class="sort-controls">
+                <div className="sort-controls">
                   <div
                     onClick={() => sortList("asc", "lethality")}
-                    class="text-asc"
+                    className="text-asc"
                   >
                     <IoMdArrowRoundUp />
                   </div>
                   |
                   <div
                     onClick={() => sortList("desc", "lethality")}
-                    class="text-desc"
+                    className="text-desc"
                   >
                     <IoMdArrowRoundDown />
                   </div>
