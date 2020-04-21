@@ -40,7 +40,7 @@ export default function MainPage() {
         {
           label: "Casos",
           data: [obj.recovers, obj.cases, obj.deaths],
-          backgroundColor: ["rgba(92, 188, 124, 0.9)", "rgba(121, 209, 255, 0.9)", "rgba(255, 87, 77, 0.9)"],
+          backgroundColor: ["rgba(92, 188, 124, 0.9)", "rgba(99, 112, 255, 0.8)", "rgba(255, 87, 77, 0.9)"],
         },
       ],
     });
@@ -52,14 +52,16 @@ export default function MainPage() {
       <header>Coronavírus</header>
       <TotalStats />
       <LineChart />
-      <div className="charts">
-      {loadingDoughnut ? (
-        <p>Loading</p>
-      ) : (
-        <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
-      )}
+      <div className="contMiddle">
+        <div className="boxChart">
+          {loadingDoughnut ? (
+            <p>Loading</p>
+          ) : (
+            <DoughnutChart chartData={doughnutData} legendPosition="bottom" />
+          )}
+        </div>
           <MiddleList />
-        <div className="tweet">
+        <div className="box">
           <ListTweets />
         </div>
       </div>

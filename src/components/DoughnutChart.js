@@ -10,10 +10,10 @@ export default function Chart({ chartData, legendPosition }) {
   const displayLegend = true;
 
   return (
-    <div className="Dchart">
+    <div >
       <Doughnut
-         height={400}
-        // width={300}
+          height={400}
+          width={300}
         data={data}
         options={{
           title: {
@@ -26,7 +26,7 @@ export default function Chart({ chartData, legendPosition }) {
             position: lPosition,
           },
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
         }}
       />
     </div>

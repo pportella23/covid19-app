@@ -16,7 +16,7 @@ export default function MiddleList() {
 
   async function getMiddleListData() {
     const data = await (
-      await api.get("/api/report/v1/brazil")
+      await api.get("https://covid19-brazil-api.now.sh/api/report/v1/brazil")
     ).data.data;
 
     setDeaths(data.deaths);
@@ -24,13 +24,19 @@ export default function MiddleList() {
   }
 
   return (
-    <div className="MiddleList">
-      <p className="letTitle">Letalidade</p>
-      <p className="content">{getLetality()}</p>
-      {/* <p>valor</p>
-      <p>v</p>
-      <p>valor</p>
-      <p>v</p> */}
+    <div className="box">
+      <div className ="boxMiddleList">
+        <p className="letTitle">Letalidade</p>
+        <p className="content">{getLetality()}</p>
+      </div>
+      <div className="boxMiddleList">
+        <p className="letTitle">valor</p>
+        <p className="content">v</p>
+      </div>
+      <div className="boxMiddleList">
+        <p className="letTitle">valor</p>
+        <p className="content">v</p>
+      </div>
     </div>
   );
 }

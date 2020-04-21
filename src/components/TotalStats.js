@@ -18,7 +18,7 @@ export default function TotalStats() {
   }
 
   async function getCountryCases() {
-    const data = await api.get("/api/report/v1/brazil");
+    const data = await api.get("https://covid19-brazil-api.now.sh/api/report/v1/brazil");
     const cases = data.data.data.confirmed;
     const deaths = data.data.data.deaths;
     const updatedAt = data.data.data.updated_at;
